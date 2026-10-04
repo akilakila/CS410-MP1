@@ -201,43 +201,27 @@ if __name__ == "__main__":
     # parser.add_argument('--k', type=float)
     # parser.add_argument('--b', type=float)
     
-    # args = parser.parse_args()
-    # # uncomment if one of the values is a list
-    # if isinstance(args.k, list):
-    #     # this case means args.k is a list
-    #     # args.b is fixed
-    #     for value in args.k:
-    #         print("============================")
-    #         print(f"k = {value}, b = {args.b}")
-    #         main(k=value, b=args.b)
-    #         print("============================")
-    # elif isinstance(args.b, list):
-    #     # this case means args.b is a list
-    #     # args.k is fixed
-    #     for value in args.b:
-    #         print("============================")
-    #         print(f"k = {args.k}, b = {value}")
-    #         main(k=args.k, b=value)
-    #         print("============================")
-
-    # # uncomment when both are fixed
-    # print("============================")
-    # print(f"k = {args.k}, b = {args.b}")
-    # main(k=args.k, b=args.b)
-    # print("============================")
-
-    # ~~~~~~~~~~~~~~~~~~ RM3 ~~~~~~~~~~~~~~~~~~~~
-    # uncomment for RM3
-    # parser.add_argument('--fb_terms', type=float)
-    # parser.add_argument('--fb_docs', type=float)
-    # parser.add_argument('--original_query_weight', type=float)
-    # args = parser.parse_args()
-    # main(fb_terms=args.fb_terms, fb_docs=args.fb_docs, original_query_weight=args.original_query_weight)
-
-    # ~~~~~~~~~~~~~~~~~~ QLD ~~~~~~~~~~~~~~~~~~~~
-    # uncomment for QLD
-    parser.add_argument('--mu', type=float)
     args = parser.parse_args()
-    main(mu=args.mu)
+    # uncomment if one of the values is a list
+    if isinstance(args.k, list):
+        # this case means args.k is a list
+        # args.b is fixed
+        for value in args.k:
+            print("============================")
+            print(f"k = {value}, b = {args.b}")
+            main(k=value, b=args.b)
+            print("============================")
+    elif isinstance(args.b, list):
+        # this case means args.b is a list
+        # args.k is fixed
+        for value in args.b:
+            print("============================")
+            print(f"k = {args.k}, b = {value}")
+            main(k=args.k, b=value)
+            print("============================")
 
-
+    # uncomment when both are fixed
+    print("============================")
+    print(f"k = {args.k}, b = {args.b}")
+    main(k=args.k, b=args.b)
+    print("============================")

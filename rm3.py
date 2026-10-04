@@ -105,7 +105,7 @@ def compute_precision(results, qrels, k=10):
                 rel += 1
         precision = rel / k
 
-        # now we have the precicision for one result, add it to a list
+        # now we have the precicision for one result, add it to the list
         precision_scores.append(precision)
 
     # now that we have a list of all the precision scores, calculate avg precision
@@ -162,8 +162,7 @@ def main(k=None, b=None, fb_terms=None, fb_docs=None, original_query_weight=None
     """=======TODO: Set Ranking Hyperparameters======="""
     # searcher.set_bm25(k1=k, b=b)
     # searcher.set_rm3(fb_terms=20, fb_docs=10, original_query_weight=0.5) # optional query expansion
-    # searcher.set_rm3(fb_terms=fb_terms, fb_docs=fb_docs, original_query_weight=original_query_weight) # optional query expansion
-    searcher.set_qld(mu=mu)
+    searcher.set_rm3(fb_terms=fb_terms, fb_docs=fb_docs, original_query_weight=original_query_weight) # optional query expansion
     """========================================="""
 
     results = search(searcher, queries, query_id_start=query_id_start)
@@ -188,56 +187,12 @@ def main(k=None, b=None, fb_terms=None, fb_docs=None, original_query_weight=None
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
-    # ~~~~~~~~~~~~~~~~~ BM25 ~~~~~~~~~~~~~~~~~~~~
-    # uncomment when we want k to be fixed, and b to be a list
-    # parser.add_argument('--k', type=float)
-    # parser.add_argument('--b', nargs='*')
-
-    # uncomment when we want to have k be a list, and b be fixed
-    # parser.add_argument('--k', nargs='+', type=float)
-    # parser.add_argument('--b', type=float)
-
-    # uncomment when we want both values to be fixed
-    # parser.add_argument('--k', type=float)
-    # parser.add_argument('--b', type=float)
-    
-    # args = parser.parse_args()
-    # # uncomment if one of the values is a list
-    # if isinstance(args.k, list):
-    #     # this case means args.k is a list
-    #     # args.b is fixed
-    #     for value in args.k:
-    #         print("============================")
-    #         print(f"k = {value}, b = {args.b}")
-    #         main(k=value, b=args.b)
-    #         print("============================")
-    # elif isinstance(args.b, list):
-    #     # this case means args.b is a list
-    #     # args.k is fixed
-    #     for value in args.b:
-    #         print("============================")
-    #         print(f"k = {args.k}, b = {value}")
-    #         main(k=args.k, b=value)
-    #         print("============================")
-
-    # # uncomment when both are fixed
-    # print("============================")
-    # print(f"k = {args.k}, b = {args.b}")
-    # main(k=args.k, b=args.b)
-    # print("============================")
-
     # ~~~~~~~~~~~~~~~~~~ RM3 ~~~~~~~~~~~~~~~~~~~~
-    # uncomment for RM3
-    # parser.add_argument('--fb_terms', type=float)
-    # parser.add_argument('--fb_docs', type=float)
-    # parser.add_argument('--original_query_weight', type=float)
-    # args = parser.parse_args()
-    # main(fb_terms=args.fb_terms, fb_docs=args.fb_docs, original_query_weight=args.original_query_weight)
 
-    # ~~~~~~~~~~~~~~~~~~ QLD ~~~~~~~~~~~~~~~~~~~~
-    # uncomment for QLD
-    parser.add_argument('--mu', type=float)
+    parser.add_argument('--fb_terms', type=float)
+    parser.add_argument('--fb_docs', type=float)
+    parser.add_argument('--original_query_weight', type=float)
     args = parser.parse_args()
-    main(mu=args.mu)
+    main(fb_terms=args.fb_terms, fb_docs=args.fb_docs, original_query_weight=args.original_query_weight)
 
 
